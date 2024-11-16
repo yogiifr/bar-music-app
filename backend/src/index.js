@@ -1,6 +1,8 @@
 import express from "express";
 import dotenv from "dotenv";
 
+import cors from "cors"
+
 import userRoutes from "./routes/user.route.js";
 import adminRoutes from "./routes/admin.route.js";
 import authRoutes from "./routes/auth.route.js";
@@ -18,6 +20,14 @@ dotenv.config();
 const __dirname = path.resolve();
 const app = express();
 const PORT = process.env.PORT;
+
+app.use(cors(
+  {
+    origin: "https://localhost:3000",
+    credentials: true,
+  }
+
+));
 
 app.use(express.json());
 app.use(clerkMiddleware());
